@@ -32,12 +32,10 @@ class MissedOnImport(BeetsPlugin):
 @MissedOnImport.listen('import_task_choice')
 def importmissed(session,task):
 	albumpath = task.paths
-	print task.choice_flag.name
-	if task.choice_flag.name!='APPLY':
+	if task.choice_flag.name!='APPLY': # Album was not auto-corrected :(
 		with open(missedLogFile, "a") as myfile:
-			myfile.write(albumpath[0]+'\n')
-	print task['path']
-	pass
+			myfile.write(albumpath[0]+'\n') # Added to log
+	print task['path']#purposely kill import, so we can reimport for testing hehe
 
 
 
